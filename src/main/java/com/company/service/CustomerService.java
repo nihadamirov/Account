@@ -1,5 +1,6 @@
 package com.company.service;
 
+import com.company.exception.CustomerNotFoundException;
 import com.company.model.Customer;
 import com.company.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ public class CustomerService {
     }
 
     protected Customer findCustomerById(String id){
-        return customerRepository.findById(id).orElseThrow();
+        return customerRepository.findById(id).orElseThrow(
+                ()-> new CustomerNotFoundException("Customer could not found by id" + id));
     }
 }
