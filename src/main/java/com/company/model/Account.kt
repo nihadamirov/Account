@@ -12,7 +12,7 @@ data class Account(
         @Id
         @GeneratedValue(generator = "UUID")
         @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-        val id: String?,
+        val id: String? = "",
         val balance: BigDecimal? = BigDecimal.ZERO,
         val creationDate: LocalDateTime,
 
@@ -23,6 +23,10 @@ data class Account(
         @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
         val transaction: Set<Transaction>?
 ){
-
+        constructor(customer: Customer,balance: BigDecimal,creationDate: LocalDateTime) : this(
+                customer = customer,
+                balance = balance,
+                creationDate = LocalDateTime.now(),
+                        )
 }
 
