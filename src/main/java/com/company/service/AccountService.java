@@ -10,7 +10,7 @@ import com.company.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+
 
 @Service
 public class AccountService {
@@ -36,7 +36,6 @@ public class AccountService {
                 );
 
         if (createAccountRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
-//            Transaction transaction = transactionService.initiateMoney(account, createAccountRequest.getInitialCredit());
             Transaction transaction = new Transaction(createAccountRequest.getInitialCredit(),account);
             account.getTransaction().add(transaction);
         }

@@ -17,6 +17,7 @@ data class Account(
         val balance: BigDecimal? = BigDecimal.ZERO,
 
 
+
         @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
         @JoinColumn(name = "customer_id", nullable = false)
         val customer: Customer?,
@@ -25,6 +26,9 @@ data class Account(
         val transaction: Set<Transaction>?
 
 ){
+
+        val creationDate: Any = TODO()
+
         constructor(customer: Customer?, balance: BigDecimal?) : this(
                 "",
                 customer = customer,
