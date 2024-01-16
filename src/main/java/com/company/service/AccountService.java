@@ -36,7 +36,7 @@ public class AccountService {
         Account account = new Account(
                 customer,
                 createAccountRequest.getInitialCredit(),
-                LocalDateTime.now());
+                null);
 
         if (createAccountRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
             Transaction transaction = transactionService.initiateMoney(account, createAccountRequest.getInitialCredit());
