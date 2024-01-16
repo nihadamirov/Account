@@ -21,14 +21,12 @@ data class Account(
         @JoinColumn(name = "customer_id", nullable = false)
         val customer: Customer?,
 
-        @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+        @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
         val transaction: Set<Transaction>?
 
 ){
-        val creationDate: LocalDateTime = TODO()
-
-        constructor(customer: Customer?, balance: BigDecimal?, o: Any) : this(
-                id = null,
+        constructor(customer: Customer?, balance: BigDecimal?) : this(
+                "",
                 customer = customer,
                 balance = balance,
                 transaction = null
